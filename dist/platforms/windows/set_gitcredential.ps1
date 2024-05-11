@@ -3,11 +3,13 @@ if ($null -eq ${env:GIT_PRIVATE_TOKEN}) {
 }
 else {
     Write-Host "GIT_PRIVATE_TOKEN is set configuring git credentials"
+    git --version
     echo $env:GIT_PRIVATE_TOKEN > ~/.git-credentials
     cat ~/.git-credentials
     git config --global credential.helper "store --file ~/.git-credentials"
     git config --global user.email $env:GIT_USER_EMAIL
     git config --global user.name $env:GIT_USER_NAME
+    git clone https://github.com/deepmirrorinc/MobiliTest.git ~/
 }
 
 Write-Host "---------- git config --list -------------"
